@@ -1,7 +1,7 @@
 import { axiosWargaSecure } from "@/config/axios.config"
 
 export const authorizeUser = async () => {
-    const data = await axiosWargaSecure.get('/check-auth')
+    const data = await axiosWargaSecure.get('/warga/check-auth')
     return data
 }
 
