@@ -7,6 +7,7 @@ import {
 	Input,
 	Stack,
 	Box,
+	ButtonGroup,
 } from "@chakra-ui/react";
 import { Button, Container, Text } from "@chakra-ui/react";
 import React from "react";
@@ -14,6 +15,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { registerWarga } from "@/helper/_POST";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type SignupInputType = {
 	noKTP: string;
@@ -53,11 +55,11 @@ const RegisterPage = () => {
 		<Container
 			display={"flex"}
 			maxWidth={"2xl"}
-			h={'88vh'}
+			h={"88vh"}
 		>
 			<Box
-				m={'auto'}
-				w={'full'}
+				m={"auto"}
+				w={"full"}
 				display={"flex"}
 				alignItems={"center"}
 				flexDirection={"column"}
@@ -145,12 +147,20 @@ const RegisterPage = () => {
 						<Text textColor={"blue.600"}>
 							* Silahkan cek token pada alamat Email anda !
 						</Text>
-						<Button
-							type="submit"
-							colorScheme="linkedin"
-						>
-							Daftar
-						</Button>
+						<ButtonGroup>
+							<Button
+								type="submit"
+								colorScheme="linkedin"
+							>
+								Daftar
+							</Button>
+							<Button
+								type="button"
+								colorScheme="linkedin"
+							>
+								<Link href={"/auth/login"}>Login</Link>
+							</Button>
+						</ButtonGroup>
 					</Stack>
 				</form>
 			</Box>

@@ -7,6 +7,7 @@ import {
 	Input,
 	Stack,
 	Box,
+	ButtonGroup,
 } from "@chakra-ui/react";
 import { Button, Container, Text } from "@chakra-ui/react";
 import React from "react";
@@ -14,6 +15,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { loginWarga } from "../../../helper/_POST";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type LoginInputType = {
 	noKTP: string;
@@ -102,12 +104,20 @@ const LoginPage = () => {
 							<FormErrorMessage>{errors.password?.message}</FormErrorMessage>
 						</FormControl>
 
-						<Button
-							type="submit"
-							colorScheme="linkedin"
-						>
-							Login
-						</Button>
+						<ButtonGroup>
+							<Button
+								type="submit"
+								colorScheme="linkedin"
+							>
+								Login
+							</Button>
+							<Button
+								type="button"
+								colorScheme="linkedin"
+							>
+								<Link href={"/auth/signup"}>Signup</Link>
+							</Button>
+						</ButtonGroup>
 					</Stack>
 				</form>
 			</Box>
