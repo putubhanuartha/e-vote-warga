@@ -16,13 +16,20 @@ import FetchAllPage from "./auth/(components)/fetch-all-page";
 import FetchKuisionerPage from "./auth/(components)/fetch-kuisioner-page";
 import { useQuery } from "@tanstack/react-query";
 import { getAllForms } from "@/helper/_GET";
+import FetchVotingPage from "./auth/(components)/fetch-voting-page";
+import { axiosWargaSecure } from "@/config/axios.config";
+import StatsPemilihan from "@/components/stats-voting";
 
 export default function Home() {
 	const { data, isLoading, isFetching } = useQuery({
 		queryKey: ["form", "voting"],
 		queryFn: getAllForms,
 	});
-	console.log(data?.data);
+	const { data: activeVotingData, isLoading: votingDataLoading } = useQuery({
+		queryKey: ["active", "voting"],
+		queryFn: async () => await axiosWargaSecure.get("/warga/active-voting"),
+	});
+	console.log(activeVotingData?.data);
 	return (
 		<SecurityProvider>
 			<HomeLayout>
@@ -58,13 +65,22 @@ export default function Home() {
 									/>
 								</TabPanel>
 								<TabPanel>
-									<p>two!</p>
+									<FetchVotingPage votings={data.data.votings} />
 								</TabPanel>
 								<TabPanel>
 									<FetchKuisionerPage forms={data.data.forms} />
 								</TabPanel>
 								<TabPanel>
-									<p>hasil!</p>
+									{votingDataLoading && <Heading>Loading Voting ...</Heading>}
+									{activeVotingData?.data &&
+										(activeVotingData.data.length === 0 ? (
+											<p>Tidak ada voting yang sedang berjalan</p>
+										) : (
+											<StatsPemilihan
+												datas={activeVotingData.data}
+												titleLabel="Hasil Pemilihan Sementara"
+											/>
+										))}
 								</TabPanel>
 							</TabPanels>
 						)}

@@ -1,8 +1,14 @@
 import { ArrowRightIcon } from "@chakra-ui/icons";
 import { Flex, IconButton, Text } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
-const CardVoting = () => {
+export type CardVotingProps = {
+	jenisPilihan: string;
+	votingId: string;
+};
+const CardVoting: React.FC<CardVotingProps> = ({ jenisPilihan, votingId }) => {
+	const router = useRouter();
 	return (
 		<Flex
 			boxShadow={"lg"}
@@ -19,9 +25,12 @@ const CardVoting = () => {
 				textColor={"blue.700"}
 				fontWeight={"semibold"}
 			>
-				VOTING PEMILIHAN KETUA RT
+				VOTING PEMILIHAN KETUA <span className="uppercase">{jenisPilihan}</span>
 			</Text>
 			<IconButton
+				onClick={() => {
+					router.push(`/voting/${votingId}`);
+				}}
 				icon={<ArrowRightIcon />}
 				aria-label="icon right arrow"
 			/>

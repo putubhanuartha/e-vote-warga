@@ -19,7 +19,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
 				left={0}
 				right={0}
 				position={"fixed"}
-				zIndex={9999}
+				zIndex={50}
 				height={"12vh"}
 				display={"flex"}
 				justifyContent={"center"}

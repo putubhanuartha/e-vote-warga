@@ -9,3 +9,7 @@ export enum InputFormType {
     checkbox = "checkbox",
     radio = "radio"
 }
+export enum JenisPilihan {
+    rt = "rt",
+    rw = "rw"
+}

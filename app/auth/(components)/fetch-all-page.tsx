@@ -1,10 +1,10 @@
 import { Stack } from "@chakra-ui/react";
 import React from "react";
 import CardVoting from "./card-voting";
-import { FormResponse } from "../../../types";
+import { FormResponse, Administrative, VotingResponse } from "../../../types";
 import CardForm from "./card-form";
 export type FetchAllPageProps = {
-	votings: any[];
+	votings: VotingResponse[];
 	forms: FormResponse[];
 };
 const FetchAllPage: React.FC<FetchAllPageProps> = ({ forms, votings }) => {
@@ -18,6 +18,15 @@ const FetchAllPage: React.FC<FetchAllPageProps> = ({ forms, votings }) => {
 					<CardForm
 						id={el.id}
 						title={el.titleForm}
+						key={el.id}
+					/>
+				);
+			})}
+			{votings.map((el) => {
+				return (
+					<CardVoting
+						jenisPilihan={el.Administrative.jenisPilihan}
+						votingId={el.id}
 						key={el.id}
 					/>
 				);

@@ -14,3 +14,8 @@ export const postAnswerForm = async (payload: { data: string, idForm: string }) 
     const response = await axiosWargaSecure.post(`/warga/answer-form?id=${payload.idForm}`, { data: payload.data })
     return response.data
 }
+
+export const postChooseCandidate = async ({ candidateVoteId }: { candidateVoteId: string }) => {
+    const response = await axiosWargaSecure.post(`/warga/choose-candidate?votingCandidateId=${candidateVoteId}`)
+    return response.data
+}
